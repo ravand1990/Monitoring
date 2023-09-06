@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+# But do not ignore these files:
+!.gitignore
+!docker-compose.yml
+!README.md
+
+# Do not ignore .gitkeep files anywhere in the repository
+!.gitkeep
+
+# To ensure that .gitkeep files inside ignored folders are not ignored,
+# you'll need to make sure their parent directories aren't ignored either.
+# For example, if there's a structure like "dir/subdir/.gitkeep",
+# both "dir/" and "dir/subdir/" need to not be ignored.
+#
+# We will use the "**" pattern which matches directories anywhere in the repo.
+!**/
