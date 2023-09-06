@@ -17,6 +17,29 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - 8086:8086
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+
+  telegraf:
+    image: telegraf:latest
+    depends_on:
+      - influxdb
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    environment:
+      - HOST_PROC=/rootfs/proc
+      - HOST_SYS=/rootfs/sys
+      - HOST_ETC=/rootfs/etc
+    privileged: true
 
 volumes:
+  grafana_data:
+  influxdb_data:
   data:
