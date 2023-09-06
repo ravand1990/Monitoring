@@ -16,3 +16,5 @@
 #
 # We will use the "**" pattern which matches directories anywhere in the repo.
 !**/
+
+!telegraf.conf
