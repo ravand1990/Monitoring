@@ -11,21 +11,18 @@ services:
       - data:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
-  grafana:
-    image: grafana/grafana-oss
-    container_name: grafana
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
     restart: unless-stopped
-    ports:
-      - "3000:3000"
     volumes:
-      - grafana_data:/var/lib/grafana
+      - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
+      - ./homarr/configs:/app/data/configs
+      - ./homarr/icons:/app/public/icons
+      - ./homarr/data:/data
+    ports:
+      - '7575:7575'
 
-  influxdb:
-    image: influxdb:latest
-    ports:
-      - 8086:8086
-    volumes:
-      - influxdb_data:/var/lib/influxdb
 
 volumes:
   grafana_data:
