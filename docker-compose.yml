@@ -8,7 +8,7 @@ services:
     ports:
       - 9443:9443
     volumes:
-      - data:/data
+      - ./portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
   homarr:
@@ -22,9 +22,3 @@ services:
       - ./homarr/data:/data
     ports:
       - '7575:7575'
-
-
-volumes:
-  grafana_data:
-  influxdb_data:
-  data:
